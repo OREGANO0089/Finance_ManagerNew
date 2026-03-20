@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JM Solutionss - Analytics</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .top-expense-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+    .top-expense-row:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <div id="app-layout">
+    <div style="width: 100%;">
+      <div class="flex justify-between items-center mb-4">
+        <h2>Analytics</h2>
+        <div class="btn btn-secondary">
+          <i class="far fa-calendar-alt"></i> This Year <i class="fas fa-chevron-down text-small"></i>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card">
+          <div class="flex justify-between items-center mb-4">
+            <h3>Spending Trends</h3>
+            <select class="form-control" style="width: auto; padding: 4px 8px; font-size: 14px;">
+              <option>Monthly</option>
+              <option>Weekly</option>
+            </select>
+          </div>
+          <div style="position: relative; height: 250px; width: 100%;">
+            <canvas id="spendingTrendsChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="flex justify-between items-center mb-4">
+            <h3>Category Breakdown</h3>
+          </div>
+          <div style="position: relative; height: 250px;">
+            <canvas id="categoryBreakdownChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="flex justify-between items-center mb-4">
+            <h3>Income vs Expenses</h3>
+          </div>
+          <div style="position: relative; height: 250px; width: 100%;">
+            <canvas id="incomeVsExpenseChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="flex justify-between items-center mb-4">
+            <h3>Top Expenses</h3>
+          </div>
+          <div id="top-expenses-list">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="store.js"></script>
+  <script src="layout.js"></script>
+  <script src="analytics.js"></script>
+</body>
+</html>

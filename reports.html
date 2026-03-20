@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JM Solutionss - Reports</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="app-layout">
+    <div style="width: 100%;">
+      <div class="flex justify-between items-center mb-4">
+        <h2>Financial Reports</h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Monthly Summary -->
+        <div class="card">
+          <div class="flex justify-between items-center mb-4">
+            <h3>Monthly Summary</h3>
+            <div class="flex gap-4">
+              <select class="form-control" id="report-month" style="padding: 4px; font-size: 14px; width: auto;"></select>
+              <select class="form-control" id="report-year-monthly" style="padding: 4px; font-size: 14px; width: auto;"></select>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <p class="text-caption">Total Income</p>
+              <p class="metric-value text-success" id="monthly-in" style="font-size: 20px;">$0.00</p>
+            </div>
+            <div>
+              <p class="text-caption">Total Expenses</p>
+              <p class="metric-value text-danger" id="monthly-ex" style="font-size: 20px;">$0.00</p>
+            </div>
+            <div>
+              <p class="text-caption">Net Savings</p>
+              <p class="metric-value" id="monthly-net" style="font-size: 20px;">$0.00</p>
+            </div>
+            <div>
+              <p class="text-caption" id="monthly-tx-count-label">Transactions</p>
+              <p class="metric-value" id="monthly-tx-count" style="font-size: 20px;">0</p>
+            </div>
+          </div>
+          
+          <div class="mt-4" style="border-top: 1px solid var(--color-border); padding-top: 16px;">
+            <p class="text-small" style="font-weight: 600; margin-bottom: 8px;">Top Spending Category</p>
+            <div class="flex justify-between">
+              <span id="monthly-top-cat">N/A</span>
+              <span id="monthly-top-cat-val" style="font-weight: 600;">$0.00</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Yearly Summary -->
+        <div class="card">
+          <div class="flex justify-between items-center mb-4">
+            <h3>Yearly Summary</h3>
+            <select class="form-control" id="report-year-yearly" style="padding: 4px; font-size: 14px; width: auto;"></select>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <p class="text-caption">Annual Income</p>
+              <p class="metric-value text-success" id="yearly-in" style="font-size: 20px;">$0.00</p>
+            </div>
+            <div>
+              <p class="text-caption">Annual Expenses</p>
+              <p class="metric-value text-danger" id="yearly-ex" style="font-size: 20px;">$0.00</p>
+            </div>
+            <div>
+              <p class="text-caption">Annual Net Savings</p>
+              <p class="metric-value" id="yearly-net" style="font-size: 20px;">$0.00</p>
+            </div>
+            <div>
+              <p class="text-caption">Savings Rate</p>
+              <p class="metric-value" id="yearly-rate" style="font-size: 20px;">0%</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Export Data -->
+        <div class="card" style="grid-column: 1 / -1;">
+          <h3>Export Data</h3>
+          <p class="text-small" style="color: var(--color-text-body); margin-bottom: 16px;">Download your transaction history as CSV for spreadsheet analysis or PDF for sharing.</p>
+          
+          <div class="flex gap-4 items-center">
+            <div class="form-group" style="margin-bottom: 0;">
+              <select class="form-control" id="export-range">
+                <option value="all">All Time</option>
+                <option value="this-month">This Month</option>
+                <option value="last-month">Last Month</option>
+                <option value="this-year">This Year</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" onclick="window.exportCSV()"><i class="fas fa-file-csv"></i> Export to CSV</button>
+            <button class="btn btn-secondary" onclick="alert('PDF Export will be available in the next release.')"><i class="fas fa-file-pdf"></i> Export to PDF</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="layout.js"></script>
+  <script src="reports.js"></script>
+</body>
+</html>

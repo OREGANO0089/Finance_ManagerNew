@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JM Solutionss - Wallet</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="app-layout">
+    <!-- Inner Content Area -->
+    <div style="width: 100%;">
+      <div class="flex justify-between items-center mb-4">
+        <h2>My Wallet</h2>
+        <button class="btn btn-primary" onclick="window.openCardModal()"><i class="fas fa-plus"></i> Add New Card</button>
+      </div>
+
+      <div class="grid grid-cols-3" id="cards-container">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Modal -->
+  <div class="modal-overlay" id="card-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Add New Card</h3>
+        <i class="fas fa-times modal-close" onclick="closeCardModal()"></i>
+      </div>
+      <form id="card-form">
+        <input type="hidden" id="card-id">
+        
+        <div class="form-group">
+          <label class="form-label">Cardholder Name</label>
+          <input type="text" class="form-control" id="card-name" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Card Number</label>
+          <input type="text" class="form-control" id="card-number" placeholder="**** **** **** 4242" required maxlength="19">
+          <small class="text-caption" style="display:block; margin-top:4px; color:var(--color-text-body);">Only last 4 digits are stored securely.</small>
+        </div>
+        
+        <div class="grid grid-cols-2">
+          <div class="form-group">
+            <label class="form-label">Expiry Date</label>
+            <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" required maxlength="5">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Card Network</label>
+            <select class="form-control" id="card-type" required>
+              <option value="visa">Visa</option>
+              <option value="mastercard">Mastercard</option>
+              <option value="amex">American Express</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Nickname (Optional)</label>
+          <input type="text" class="form-control" id="card-nickname" placeholder="e.g. Travel Card">
+        </div>
+        
+        <div class="flex justify-between" style="margin-top: 32px;">
+          <button type="button" class="btn btn-secondary" onclick="closeCardModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="layout.js"></script>
+  <script src="wallet.js"></script>
+</body>
+</html>

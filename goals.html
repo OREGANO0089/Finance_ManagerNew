@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JM Solutionss - Goals</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .goal-card { position: relative; }
+    .goal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+    .goal-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(46, 58, 140, 0.1); color: var(--color-primary); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .goal-actions { opacity: 0; transition: opacity 0.2s; position: absolute; top: 16px; right: 16px; display: flex; gap: 8px; }
+    .goal-card:hover .goal-actions { opacity: 1; }
+    .goal-action-btn { background: var(--color-bg); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: var(--color-text-body); transition: all 0.2s; }
+    .goal-action-btn:hover { background: var(--color-border); color: var(--color-primary); }
+    .goal-action-btn.delete:hover { color: var(--color-danger); }
+  </style>
+</head>
+<body>
+  <div id="app-layout">
+    <div style="width: 100%;">
+      <div class="flex justify-between items-center mb-4">
+        <h2>Savings Goals</h2>
+        <button class="btn btn-primary" onclick="window.openGoalModal()"><i class="fas fa-plus"></i> Create New Goal</button>
+      </div>
+
+      <div class="grid grid-cols-3" id="goals-container">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Goal Modal -->
+  <div class="modal-overlay" id="goal-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Create New Goal</h3>
+        <i class="fas fa-times modal-close" onclick="closeGoalModal()"></i>
+      </div>
+      <form id="goal-form">
+        <input type="hidden" id="goal-id">
+        
+        <div class="form-group">
+          <label class="form-label">Goal Name</label>
+          <input type="text" class="form-control" id="goal-name" placeholder="e.g. New Car" required>
+        </div>
+        
+        <div class="grid grid-cols-2">
+          <div class="form-group">
+            <label class="form-label">Target Amount</label>
+            <input type="number" class="form-control" id="goal-target" min="1" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Initial Deposit (Optional)</label>
+            <input type="number" class="form-control" id="goal-initial" min="0" step="0.01">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Target Date</label>
+          <input type="date" class="form-control" id="goal-date" required>
+        </div>
+        
+        <div class="flex justify-between" style="margin-top: 32px;">
+          <button type="button" class="btn btn-secondary" onclick="closeGoalModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Goal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contribute Modal -->
+  <div class="modal-overlay" id="contribute-modal">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h3>Add Funds to Goal</h3>
+        <i class="fas fa-times modal-close" onclick="closeContributeModal()"></i>
+      </div>
+      <form id="contribute-form">
+        <input type="hidden" id="contribute-goal-id">
+        <div class="form-group">
+          <label class="form-label">Amount</label>
+          <input type="number" class="form-control" id="contribute-amount" min="0.01" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Add Funds</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="layout.js"></script>
+  <script src="goals.js"></script>
+</body>
+</html>
